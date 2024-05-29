@@ -1,0 +1,104 @@
+#https://packaging.python.org/en/latest/tutorials/packaging-projects/ ----*----*----*----*----*----*----*----*----*----*
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+#https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html ----*----*----*----*----*----*----*----*----*----*
+[project]
+name = "flasked_blog"
+dynamic = ["version"]
+description = "test project to read yaml files validate/update and overwrite them"
+readme = { file = "README.txt", content-type = "text/markdown" }
+authors = [{ name = "Ivan Pina", email = "cs.ip.mt@gmail.com" }]
+maintainers = [{ name = "Ivan Pina", email = "cs.ip.mt@gmail.com" }]
+keywords = []
+classifiers = [
+    # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License 2.0",
+    "Operating System :: Unix",
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+]
+
+#Library dependencies --*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+dependencies = []
+
+[project.optional-dependencies]
+cli = ["click", "rich"]
+docs = ["pdoc"]
+lint = ["mypy", "python-semantic-release", "ruff"]
+test = ["pytest", "pytest-cov", "tox"]
+dev = [
+    "flasked_blog[cli]",
+    "flasked_blog[docs]",
+    "flasked_blog[lint]",
+    "flasked_blog[test]",
+]
+
+#Entry Points *----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[project.scripts]
+flasked_blog_cli = "flasked_blog.cli:cli"
+
+#URLs ---*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[project.urls]
+Homepage = "https://github.com/CIvanPiMa/flasked_blog.git"
+Documentation = "https://civanpima.github.io/flasked_blog/flasked_blog.html"
+Repository = "https://github.com/CIvanPiMa/flasked_blog.git"
+Issues = "https://github.com/CIvanPiMa/flasked_blog/issues"
+Changelog = "https://github.com/CIvanPiMa/flasked_blog/blob/main/CHANGELOG.md"
+
+#https://setuptools.pypa.io/en/latest/userguide/datafiles.html -*----*----*----*----*----*----*----*----*----*----*----*
+[tool.setuptools.package-data]
+flasked_blog = ["*.yml"]
+
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html -*----*----*----*----*----*----*----*----*
+[tool.semantic_release]
+commit_message = "Release version: v{version}"
+version_variables = ["src/flasked_blog/__init__.py:__version__"]
+
+[tool.semantic_release.branches.main]
+match = "(main|feat/initial_project_release)"
+
+[tool.semantic_release.changelog]
+exclude_commit_patterns = [
+    "^(?!feat|fix|docs|style|refactor|test).*",
+]
+
+[tool.semantic_release.commit_author]
+env = "GIT_COMMIT_AUTHOR"
+default = "semantic-release: <semantic-release>"
+
+
+#https://docs.astral.sh/ruff/settings/ *----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[tool.ruff]
+fix = true
+line-length = 120
+src = ["src", "tests"]
+extend-exclude = ["features"]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 120
+
+[tool.ruff.lint]
+
+#https://mypy.readthedocs.io/en/stable/config_file.html ---*----*----*----*----*----*----*----*----*----*----*----*----*
+[tool.mypy]
+exclude = ["\\.*venv"]
+warn_return_any = true
+warn_unreachable = true
+
+#https://behave.readthedocs.io/en/latest/behave/ *----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+[tool.behave]
+format = "plain"
+
+#https://tox.wiki/en/latest/config.html ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+#[tool.tox]
+
+#Documentation ----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+#https://pdoc.dev/docs/pdoc.html#how-can-i
+#https://github.com/mitmproxy/pdoc/tree/main/examples
+#$ pdoc -o docs/ src/flasked_blog
