@@ -8,7 +8,7 @@
             "name": "main.py",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/athleanscrap/main.py",
+            "program": "${workspaceFolder}/src/flasked_blog/main.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
             "env": {

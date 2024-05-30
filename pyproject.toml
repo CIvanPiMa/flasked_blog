@@ -24,7 +24,11 @@ classifiers = [
 ]
 
 #Library dependencies --*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
-dependencies = []
+dependencies = [
+    "flask",
+    "requests",
+    "types-requests",
+]
 
 [project.optional-dependencies]
 cli = ["click", "rich"]
@@ -37,10 +41,6 @@ dev = [
     "flasked_blog[lint]",
     "flasked_blog[test]",
 ]
-
-#Entry Points *----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
-[project.scripts]
-flasked_blog_cli = "flasked_blog.cli:cli"
 
 #URLs ---*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
 [project.urls]
