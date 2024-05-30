@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Future Imperfect by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="static/assets/css/main.css" />
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      {% include 'header.html' %}
+
+      <!-- Main -->
+      <div id="main">
+        <!-- Posts -->
+		<!-- TODO: generate the posts using the big post template -->
+		{% for post in posts %}
+			{% include 'post_big.html' %}
+		{% else %}
+			<em>no posts found</em>
+		{% endfor %}		
+      </div>
+
+	  <!-- Sidebar -->
+      {% include 'sidebar.html' %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/browser.min.js"></script>
+    <script src="static/assets/js/breakpoints.min.js"></script>
+    <script src="static/assets/js/util.js"></script>
+    <script src="static/assets/js/main.js"></script>
+  </body>
+</html>
